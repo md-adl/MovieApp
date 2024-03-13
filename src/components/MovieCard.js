@@ -8,35 +8,33 @@ import { Link } from "react-router-dom";
 const MovieCard = () => {
   const { reviews, movies } = useMovieContext();
   const [searchTerm, setSearchTerm] = React.useState("");
-  const calculateAverageRating = () => {
-    // Filter reviews for the current movie
-    const movieReviews = reviews.filter(
-      (review) => review.movieId === movies._id
-    );
+  console.log(reviews.rating);
+  const calculateAverageRating = (movieId) => {
+    const movieReviews = reviews.filter((review) => review.movieId === movieId);
 
-    // Calculate the average rating
     if (movieReviews.length > 0) {
-      const totalRating = movieReviews.reduce(
-        (sum, review) => sum + review.rating,
-        0
-      );
+      const totalRating = movieReviews.reduce((sum, review) => sum + review.rating, 0);
       const averageRating = totalRating / movieReviews.length;
-      return averageRating.toFixed(1); // Round to one decimal place
+      return averageRating.toFixed(1);
     }
 
-    return "N/A"; // No reviews for the movie
+    return "N/A";
   };
+
   const filteredMovies = movies.filter((movie) =>
     movie.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
- // Get the navigate function from react-router-dom
- console.log("filteredMovies:", filteredMovies);
+ 
 
  
 
   return (
-    <div className="flex flex-wrap">
-        
+
+    <>
+      <div>
+      <h1 class="text-4xl p-4">The Best Movie Review Sites</h1>
+      </div>
+     <div className="flex flex-wrap">   
       <div className="relative w-1/3 mb-4 ml-5">
         <input
           type="text"
@@ -46,7 +44,7 @@ const MovieCard = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
-          {/* Heroicons search icon */}
+         
           <svg
             className="h-6 w-6 text-gray-500"
             fill="none"
@@ -65,17 +63,20 @@ const MovieCard = () => {
       </div>
 
       <div className="flex flex-wrap">
-      {filteredMovies.map((movie) => (
+        {filteredMovies.map((movie) => (
           <Link to={`/movie/${movie._id}`} key={movie._id} className="w-1/4 p-4">
             <div className="bg-slate-300 rounded p-4 h-64">
               <h3 className="text-xl font-bold">{movie.name}</h3>
               <p>Release Date: {movie.releaseDate}</p>
-              <p>Average Rating: {calculateAverageRating()}</p>
+              <p>Average Rating: {calculateAverageRating(movie._id)}</p>
             </div>
           </Link>
         ))}
       </div>
     </div>
+    
+    </>
+   
   );
 };
 

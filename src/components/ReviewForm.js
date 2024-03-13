@@ -23,7 +23,6 @@ const ReviewForm = ({ onClose, movieId }) => {
         movieId,
         ...reviewData,
       });
-       console.log(response);
       if (response.status === 200) {
         // Update the review list in the context
         addReview(response.data);

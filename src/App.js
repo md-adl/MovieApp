@@ -26,10 +26,6 @@ const App = () => {
         <Header openMovieForm={openMovieForm} openReviewForm={openReviewForm} />
         {isMovieFormOpen && <MovieForm onClose={closeMovieForm} />}
         {isReviewFormOpen && <ReviewForm onClose={closeReviewForm} />}
-        <div>
-        
-        <h1 class="text-4xl p-4">The Best Movie Review Sites</h1>
-        </div>
         <Routes>
           <Route path="/movie/:id" element={<MovieDetail/>} />
           

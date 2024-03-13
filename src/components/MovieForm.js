@@ -21,17 +21,13 @@ const MovieForm = ({ onClose }) => {
   const createMovie = async () => {
     try {
       const response = await axios.post('http://localhost:5001/movies', movieData);
-      console.log(response)
+    
 
       if (response.status === 200) {
-        // Update the movie list in the context
         addMovie(response.data);
-        // Set the flag to show the success message
         setIsMovieCreated(true);
-        // Close the modal after a delay (to allow the user to see the success message)
         setTimeout(() => onClose(), 2000);
       } else {
-        // Handle error
         console.error('Failed to create movie');
       }
     } catch (error) {

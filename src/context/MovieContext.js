@@ -12,16 +12,15 @@ export const MovieProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const [moviesResponse, reviewsResponse] = await Promise.all([
-          axios.get('http://localhost:5001/movies'), // Update with your API endpoint for movies
+          axios.get('http://localhost:5001/movies'), 
           axios.get('http://localhost:5001/reviews'),
-           // Update with your API endpoint for reviews
+
            
         ]);
-        console.log(moviesResponse)
 
         setMovies(moviesResponse.data);
         setReviews(reviewsResponse.data);
-        console.log(reviewsResponse.data)
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
