@@ -28,7 +28,7 @@ const MovieCard = () => {
         <h1 className="text-4xl p-4">The Best Movie Review Sites</h1>
       </div>
       <div className="flex flex-wrap">
-        <div className="w-full md:w-1/3 mb-4 md:mb-0 md:ml-5">
+        <div className="w-full md:w-1/3 mb-4 md:mb-0 md:ml-5 relative">
           <input
             type="text"
             placeholder="Search by movie name"
