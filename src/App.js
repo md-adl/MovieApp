@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import Header from './components/Header';
+import MovieForm from './components/MovieForm';
+import ReviewForm from './components/ReviewForm';
+import MovieCard from './components/MovieCard';
+import MovieDetail from './components/MovieDetail';
+import { Routes ,Route } from 'react-router-dom';
+import { MovieProvider, useMovieContext } from './context/MovieContext';
 
-function App() {
+
+const App = () => {
+  const [isMovieFormOpen, setMovieFormOpen] = useState(false);
+  const [isReviewFormOpen, setReviewFormOpen] = useState(false);
+  const { movies } = useMovieContext();
+
+  const openMovieForm = () => setMovieFormOpen(true);
+  const closeMovieForm = () => setMovieFormOpen(false);
+
+  const openReviewForm = () => setReviewFormOpen(true);
+  const closeReviewForm = () => setReviewFormOpen(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MovieProvider>
+      <div>
+        <Header openMovieForm={openMovieForm} openReviewForm={openReviewForm} />
+        {isMovieFormOpen && <MovieForm onClose={closeMovieForm} />}
+        {isReviewFormOpen && <ReviewForm onClose={closeReviewForm} />}
+        <div>
+        
+        <h1 class="text-4xl p-4">The Best Movie Review Sites</h1>
+        </div>
+        <Routes>
+          <Route path="/movie/:id" element={<MovieDetail/>} />
+          
+          <Route path='/' element={<MovieCard/>} />
+        </Routes>
+      </div>
+    </MovieProvider>
   );
-}
+};
 
 export default App;
