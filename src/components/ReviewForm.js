@@ -19,7 +19,7 @@ const ReviewForm = ({ onClose, movieId }) => {
 
   const createReview = async () => {
     try {
-      const response = await axios.post(`http://localhost:5001/reviews`, {
+      const response = await axios.post(`https://glacial-refuge-27739-b9094db638ef.herokuapp.com/reviews`, {
         movieId,
         ...reviewData,
       });
