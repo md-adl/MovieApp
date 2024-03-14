@@ -12,8 +12,8 @@ export const MovieProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const [moviesResponse, reviewsResponse] = await Promise.all([
-          axios.get('http://localhost:5001/movies'), 
-          axios.get('http://localhost:5001/reviews'),
+          axios.get('https://glacial-refuge-27739-b9094db638ef.herokuapp.com/movies'), 
+          axios.get('https://glacial-refuge-27739-b9094db638ef.herokuapp.com/reviews'),
 
            
         ]);
