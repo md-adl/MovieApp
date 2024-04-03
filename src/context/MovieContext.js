@@ -12,8 +12,8 @@ export const MovieProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const [moviesResponse, reviewsResponse] = await Promise.all([
-          axios.get('https://glacial-refuge-27739-b9094db638ef.herokuapp.com/movies'), 
-          axios.get('https://glacial-refuge-27739-b9094db638ef.herokuapp.com/reviews'),           
+          axios.get('https://moviebackend-ybs6.onrender.com/movies'), 
+          axios.get('https://moviebackend-ybs6.onrender.com/reviews'),           
         ]);
         setMovies(moviesResponse.data);
         setReviews(reviewsResponse.data);

@@ -20,7 +20,7 @@ const MovieForm = ({ onClose }) => {
 
   const createMovie = async () => {
     try {
-      const response = await axios.post('https://glacial-refuge-27739-b9094db638ef.herokuapp.com/movies', movieData);
+      const response = await axios.post('https://moviebackend-ybs6.onrender.com/movies', movieData);
     
 
       if (response.status === 200) {
